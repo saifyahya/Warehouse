@@ -1,0 +1,104 @@
+<div #modal class="modal fade" id="userSignupModal" tabindex="-1" role="dialog" aria-labelledby="userSignupModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h5 class="modal-title" id="userSignupModalLabel">Add New User</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" #closeButton>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="signupForm">
+                    <!-- Username Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" formControlName="username"
+                            placeholder="Enter username" />
+                        <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('username')?.hasError('required')">Username is required</small>
+                            <small *ngIf="signupForm.get('username')?.hasError('minlength')">Username must be at least 3
+                                characters long</small>
+                        </div>
+                    </div>
+
+                    <!-- Name Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name"
+                            placeholder="Enter full name" />
+                        <div *ngIf="signupForm.get('name')?.touched && signupForm.get('name')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('name')?.hasError('required')">Name is required</small>
+                            <small *ngIf="signupForm.get('name')?.hasError('minlength')">Name must be at least 2
+                                characters long</small>
+                        </div>
+                    </div>
+
+                    <!-- Date of Birth Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" formControlName="dob" />
+                        <div *ngIf="signupForm.get('dob')?.touched && signupForm.get('dob')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('dob')?.hasError('required')">Date of birth is required</small>
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                            placeholder="Enter email" />
+                        <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('email')?.hasError('required')">Email is required</small>
+                            <small *ngIf="signupForm.get('email')?.hasError('email')">Please enter a valid email
+                                address</small>
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            placeholder="Enter password" />
+                        <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('password')?.hasError('required')">Password is required</small>
+                            <small *ngIf="signupForm.get('password')?.hasError('minlength')">Password must be at least 6
+                                characters long</small>
+                        </div>
+                    </div>
+
+                    <!-- Role Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="role">Role</label>
+                        <select class="form-control" id="role" formControlName="role">
+                            <option value="Employee">Employee</option>
+                            <option value="Manager">Manager</option>
+                        </select>
+                        <div *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('role')?.hasError('required')">Role is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="signupForm.controls['role'].value==='Employee'" style="margin-bottom: 10px;">
+                        <label for="store">Store Id</label>
+                        <input class="form-control" id="store" formControlName="store" type="number">
+
+                        <div *ngIf="signupForm.get('store')?.touched && signupForm.get('store')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('store')?.hasError('required')">store is required</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" (click)="addNewUser()" data-bs-dismiss="modal">Sign
+                        Up</button>
+              
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

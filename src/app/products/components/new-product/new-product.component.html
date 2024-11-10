@@ -1,0 +1,61 @@
+<div #productModal class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h5 class="modal-title" id="productModalLabel">Add Product</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" #closeButton>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="productForm" >
+
+                    <!-- Product Name Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="name">Product Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter product name" />
+                        <div *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid" class="text-danger">
+                            <small *ngIf="productForm.get('name')?.hasError('required')">Product name is required</small>
+                        </div>
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" formControlName="description" rows="3" placeholder="Enter product description"></textarea>
+                        <div *ngIf="productForm.get('description')?.touched && productForm.get('description')?.invalid" class="text-danger">
+                            <small *ngIf="productForm.get('description')?.hasError('required')">Description is required</small>
+                        </div>
+                    </div>
+
+                    <!-- Price Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" formControlName="price" placeholder="Enter product price" />
+                        <div *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid" class="text-danger">
+                            <small *ngIf="productForm.get('price')?.hasError('required')">Price is required</small>
+                            <small *ngIf="productForm.get('price')?.hasError('min')">Price must be at least $0.01</small>
+                        </div>
+                    </div>
+
+                    <!-- Stock Level Field -->
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="stockLevel">Stock Level</label>
+                        <input type="number" class="form-control" id="stockLevel" formControlName="stockLevel" placeholder="Enter stock level" />
+                        <div *ngIf="productForm.get('stockLevel')?.touched && productForm.get('stockLevel')?.invalid" class="text-danger">
+                            <small *ngIf="productForm.get('stockLevel')?.hasError('required')">Stock level is required</small>
+                        </div>
+                    </div>
+
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid" (click)="submit()">Save Product</button>
+                    <div *ngIf="productAlreadyExist" class="alert alert-danger" role="alert">
+                        Product already exists.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
