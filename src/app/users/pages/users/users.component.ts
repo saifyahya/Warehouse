@@ -3,15 +3,22 @@ import { UsersService } from '../../service/users.service';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { Product } from '../../../products/model/product.model';
+import { Order } from '../../../orders/models/order.model';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
 export class UsersComponent implements OnInit {
-viewUserProducts(products:Product[],username:string) {
-  this.router.navigate(['/dashboard-products'], {state: { products },queryParams:{username}});}
 
+viewUserOrders(orders: Order[],username: string) {
+  if(orders.length>0)
+  this.router.navigate(['/dashboard-orders'], {state: { orders },queryParams:{username}});
+}
+viewUserProducts(products:Product[],username:string) {
+  if(products.length>0)
+  this.router.navigate(['/dashboard-products'], {state: { products },queryParams:{username}});
+}
 
   myUsers: User[] = [];
 

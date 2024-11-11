@@ -20,6 +20,8 @@ import { ProductsDashboardComponent } from './dashboard/components/products-dash
 import { OrdersDashboardComponent } from './dashboard/components/orders-dashboard/orders-dashboard.component';
 import { ManageOrderComponent } from './orders/components/manage-order/manage-order.component';
 import { CommonModule } from '@angular/common';
+import { WarehouseComponent } from './warehouses/pages/warehouse/warehouse.component';
+import { NewWarehouseComponent } from './warehouses/components/new-warehouse/new-warehouse.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CommonModule } from '@angular/common';
     NewOrderComponent,
     ProductsDashboardComponent,
     OrdersDashboardComponent,
-    ManageOrderComponent
+    ManageOrderComponent,
+    WarehouseComponent,
+    NewWarehouseComponent
   ],
   imports: [
     BrowserModule,

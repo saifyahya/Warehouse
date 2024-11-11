@@ -23,7 +23,6 @@ getUserproducts(){
   if (history.state.products) {
     this.products = history.state.products;
   } else {
-    console.log('No products passed');
   }
 }
 getUsername(){

@@ -32,8 +32,8 @@
               <td>{{ user.dob | date  }}</td>
               <td>{{ user.phoneNumber || '' }}</td>
               <td>{{ user.store?.id || '-' }}</td>
-              <td (click)="viewUserProducts(user.store?.products||[],user.userName)">{{ user.store?.products?.length||'-' }}</td>
-              <td>{{ user.store?.orders?.length || '-' }}</td>
+              <td (click)="viewUserProducts(user.store?.products||[],user.userName)" class="navigate">{{ user.store?.products?.length||'-' }}</td>
+              <td (click)="viewUserOrders(user.store?.orders||[],user.userName)" class="navigate">{{ user.store?.orders?.length || '-' }}</td>
 
             </tr>
           </tbody>

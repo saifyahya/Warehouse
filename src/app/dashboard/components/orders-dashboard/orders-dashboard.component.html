@@ -1,1 +1,42 @@
-<p>orders-dashboard works!</p>
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">Order List</h2>
+  <h6>Employee: {{username}}</h6>
+  <h6>Warehose Number: {{orders[0].storeId}}</h6>
+    <table class="table table-striped table-bordered mt-4">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Total Quantity</th>
+          <th>Total Price</th>
+          <th>Shipping Address</th>
+          <th>Payment Method</th>
+          <th>Customer Details</th>
+          <th>Status</th>
+          <th>Warehouse Number</th>
+          <th>Order Items</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders; let i = index">
+          <td>{{ order.code }}</td>
+          <td>{{ order.totalQuantity }}</td>
+          <td>${{ order.totalPrice | number: '1.2-2' }}</td>
+          <td>{{ order.shippingAddress }}</td>
+          <td>{{ order.paymentMethod }}</td>
+          <td>{{ order.customerDetails }}</td>
+          <td>{{ order.status }}</td>
+          <td>{{ order.storeId }}</td>
+          
+          <td>
+            <ul class="list-group">
+              <li *ngFor="let product of order.products">
+                {{ product.product.name }} (x{{ product.quantity }}) - ${{ product.price | number: '1.2-2' }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-new-order></app-new-order>

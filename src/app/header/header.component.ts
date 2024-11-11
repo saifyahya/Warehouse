@@ -13,24 +13,27 @@ constructor(private auth: AutheticationService, private router: Router) {
 }
 
 
-// isManager(): boolean {
-//   return this.auth.isManager();
-// }
+isManager(): boolean {
+  return this.auth.isManager();
+}
+isEmployee(){
+  return this.auth.isEmployee()
+}
 
 
-// checkLogin(): boolean {
-//   if (this.auth.getToken())
-//     return true
-//   return false;
-// }
+checkLogin(): boolean {
+  if (this.auth.getToken())
+    return true
+  return false;
+}
 
-// logout() {
-//   this.auth.logout();
-//   this.router.navigateByUrl('/signin');
-// }
+logout() {
+  this.auth.logout();
+  this.router.navigateByUrl('/login');
+}
 
-// getCurrentUsername():string{
-//   return this.auth.getCurrentUserName();
-// }
+getCurrentUsername():string|null{
+  return this.auth.getUsername();
+}
 
 }

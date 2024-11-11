@@ -13,6 +13,8 @@ loginForm:FormGroup = new FormGroup({
   "username": new FormControl(),
   "password":new FormControl()
 })
+
+wrongCredentials:boolean=false;
 constructor(private authService:AutheticationService,private router:Router){
 }
 
@@ -21,6 +23,8 @@ ngOnInit(){
 }
 
 submitLogin(){
+  this.wrongCredentials=false;
+
 let username = this.loginForm.controls['username'].value;
 let password  = this.loginForm.controls['password'].value;
 this.authService.login(username,password).subscribe({
@@ -28,17 +32,17 @@ this.authService.login(username,password).subscribe({
     
     {
       if(this.authService.isManager()){
-        console.log("user is manager");
 
         this.router.navigateByUrl('/users');
       }else{
-        console.log("user is employee");
         
         this.router.navigateByUrl('/products');
       }
   
   },
-  error:(err)=>console.log(`Error in login: ${err.message}`)
+  error:(err)=>{
+    this.wrongCredentials=true;
+  }
 })
 }
 

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { NewUser } from '../../users/models/add-user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +17,7 @@ export class AutheticationService {
        let token = res.token;
        if (token) {
         const decodedToken = this.parseJwt(token);
-        // Extract roles
-        const roles = decodedToken.roles || []; // Adjust according to your claims structure
+        const roles = decodedToken.roles || []; 
         const storeId=decodedToken.storeId;
         const username= decodedToken.username;
     if(roles.length>0){
@@ -29,7 +27,6 @@ export class AutheticationService {
       localStorage.setItem("storeId",storeId);
     }
     } else {
-        console.log('No token found');
     }
        return token;
      }));
@@ -73,4 +70,12 @@ isManager(){
       }
       return false;
 }
+
+logout(){
+  localStorage.removeItem("roles");
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
+  localStorage.removeItem("storeId");
+}
+
 }

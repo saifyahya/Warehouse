@@ -7,32 +7,49 @@ import { OrdersComponent } from './orders/pages/orders.component';
 import { ProductsDashboardComponent } from './dashboard/components/products-dashboard/products-dashboard.component';
 import { OrdersDashboardComponent } from './dashboard/components/orders-dashboard/orders-dashboard.component';
 import { ManageOrderComponent } from './orders/components/manage-order/manage-order.component';
+import { WarehouseComponent } from './warehouses/pages/warehouse/warehouse.component';
+import { LoginActivateService } from './guard/login.guard';
+import { ActivateRoutesService } from './guard/auth.guard';
+import { EmplyeeActivateRoutesService } from './guard/employee.guard';
+import { ManagerActivateRoutesService } from './guard/manager.guard';
 
 const routes: Routes = [
 {path:'users',
-  component:UsersComponent
+  component:UsersComponent,
+  canActivate:[ActivateRoutesService,ManagerActivateRoutesService,]
 },
 {path:'login',
-  component:LoginComponent
+  component:LoginComponent,
+  canActivate:[LoginActivateService]
 },
 {
   path:'products',
-  component:ProductsComponent
+  component:ProductsComponent,
+  canActivate:[ActivateRoutesService,EmplyeeActivateRoutesService]
 },
 {
   path:'orders',
-  component:OrdersComponent
+  component:OrdersComponent,
+  canActivate:[ActivateRoutesService,EmplyeeActivateRoutesService]
 },
 {path:'dashboard-products',
-  component:ProductsDashboardComponent
+  component:ProductsDashboardComponent,
+  canActivate:[ActivateRoutesService,ManagerActivateRoutesService]
+
 },
 {path:'dashboard-orders',
-  component:OrdersDashboardComponent
+  component:OrdersDashboardComponent,
+  canActivate:[ActivateRoutesService,ManagerActivateRoutesService]
+
 },
 {path:'manage-order',
-  component:ManageOrderComponent
+  component:ManageOrderComponent,
+  canActivate:[ActivateRoutesService,EmplyeeActivateRoutesService]
+},
+{path:'warehouses',
+  component:WarehouseComponent,
+  canActivate:[ActivateRoutesService,ManagerActivateRoutesService]
 }
-
 ];
 
 @NgModule({
