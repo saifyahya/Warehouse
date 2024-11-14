@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../service/products.service';
 import { Product } from '../../model/product.model';
@@ -12,7 +12,11 @@ import { Router } from '@angular/router';
 })
 export class NewProductComponent {
   productAlreadyExist:boolean=false;
+@Input()
+storeCapacity:number|undefined=0
 
+@Input()
+totalStock:number=0;
   @ViewChild('productModal') modal!:ElementRef;
   @ViewChild('closeButton', { static: false }) closeButton!: ElementRef<HTMLButtonElement>;
 

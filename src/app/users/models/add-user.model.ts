@@ -6,5 +6,5 @@ export interface NewUser{
    dob:Date 
    roleName:string 
    phoneNumber:string,
-   storeId:number
+   storeId?:number
 }

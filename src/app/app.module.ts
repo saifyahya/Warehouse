@@ -15,13 +15,13 @@ import { NewProductComponent } from './products/components/new-product/new-produ
 import { HttpRequestInterceptorService } from './request-interceptor/request-interceptor.service';
 import { EditProductComponent } from './products/components/edit-product/edit-product.component';
 import { DeleteProductComponent } from './products/components/delete-product/delete-product.component';
-import { NewOrderComponent } from './orders/components/new-order/new-order.component';
 import { ProductsDashboardComponent } from './dashboard/components/products-dashboard/products-dashboard.component';
 import { OrdersDashboardComponent } from './dashboard/components/orders-dashboard/orders-dashboard.component';
 import { ManageOrderComponent } from './orders/components/manage-order/manage-order.component';
 import { CommonModule } from '@angular/common';
 import { WarehouseComponent } from './warehouses/pages/warehouse/warehouse.component';
 import { NewWarehouseComponent } from './warehouses/components/new-warehouse/new-warehouse.component';
+import { ActionOrderComponent } from './orders/components/action-order/action-order.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +35,12 @@ import { NewWarehouseComponent } from './warehouses/components/new-warehouse/new
     NewProductComponent,
     EditProductComponent,
     DeleteProductComponent,
-    NewOrderComponent,
     ProductsDashboardComponent,
     OrdersDashboardComponent,
     ManageOrderComponent,
     WarehouseComponent,
-    NewWarehouseComponent
+    NewWarehouseComponent,
+    ActionOrderComponent
   ],
   imports: [
     BrowserModule,

@@ -41,10 +41,9 @@ getUsername():string |null{
   }
 
    parseJwt(token: string) {
-    const base64Url = token.split('.')[1]; // Get the payload part
-    const jsonPayload = decodeURIComponent(escape(window.atob(base64Url))); // Decode and handle special characters
-
-    return JSON.parse(jsonPayload); // Parse the JSON string
+    const base64Url = token.split('.')[1]; 
+    const jsonPayload = decodeURIComponent(escape(window.atob(base64Url))); 
+    return JSON.parse(jsonPayload); 
 }
 
 hasToken():boolean{

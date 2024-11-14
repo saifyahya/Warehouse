@@ -22,4 +22,12 @@ createStoreOrder(order:Order):Observable<{message:string,status:string}>{
   return this.httpClinet.post<{message:string,status:string}>(`${this.baseUrl}`, order);
 }
 
+editOrderStatus(orderCode:string,newStatus:string):Observable<{message:string,status:string}>{
+  return this.httpClinet.put<{message:string,status:string}>(`${this.baseUrl}/${orderCode}?status=${newStatus}`,null);
+}
+
+deleteOrderStatus(orderCode:string):Observable<{message:string,status:string}>{
+  return this.httpClinet.delete<{message:string,status:string}>(`${this.baseUrl}/${orderCode}`);
+}
+
 }

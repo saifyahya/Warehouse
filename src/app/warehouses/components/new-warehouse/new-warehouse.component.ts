@@ -20,14 +20,13 @@ constructor(private warehouseService:WarehouseService){}
 createWarehouse(){
   let warehouse:Warehouse={
     location:this.warehouseForm.controls['location'].value.trim(),
-    capacity:this.warehouseForm.controls['capacity'].value.trim(),
+    capacity:this.warehouseForm.controls['capacity'].value,
     isActive:true
   }
 this.warehouseService.createNewWarehouse(warehouse).subscribe({
   next:(data)=>{
-    let newWarehouses = this.warehouseService.allWarehouses.getValue();
-    newWarehouses.push(warehouse);
-    this.warehouseService.allWarehouses.next(newWarehouses);
+
+    this.warehouseService.getAllWarehoues().subscribe();
     this.closeButton.nativeElement.click();
   }
 })

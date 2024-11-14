@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Order } from '../models/order.model';
 import { AutheticationService } from '../../login/service/authetication.service';
 import { OrdersService } from '../service/orders.service';
 import { Router } from '@angular/router';
+import { ActionOrderComponent } from '../components/action-order/action-order.component';
 
 @Component({
   selector: 'app-orders',
@@ -10,6 +11,12 @@ import { Router } from '@angular/router';
   styleUrl: './orders.component.css'
 })
 export class OrdersComponent {
+
+  @ViewChild('actionOrder') ActionOrderComponent!:ActionOrderComponent;
+actionOrderEvent(order: Order,actionType:string) {
+this.ActionOrderComponent.action=actionType;
+this.ActionOrderComponent.newStatus=order.status;
+this.ActionOrderComponent.orderToAction=order}
 manageOrder() {
 this.router.navigateByUrl('/manage-order');
 }

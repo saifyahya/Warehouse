@@ -14,42 +14,50 @@ import { EmplyeeActivateRoutesService } from './guard/employee.guard';
 import { ManagerActivateRoutesService } from './guard/manager.guard';
 
 const routes: Routes = [
-{path:'users',
-  component:UsersComponent,
-  canActivate:[ActivateRoutesService,ManagerActivateRoutesService,]
-},
-{path:'login',
-  component:LoginComponent,
-  canActivate:[LoginActivateService]
-},
-{
-  path:'products',
-  component:ProductsComponent,
-  canActivate:[ActivateRoutesService,EmplyeeActivateRoutesService]
-},
-{
-  path:'orders',
-  component:OrdersComponent,
-  canActivate:[ActivateRoutesService,EmplyeeActivateRoutesService]
-},
-{path:'dashboard-products',
-  component:ProductsDashboardComponent,
-  canActivate:[ActivateRoutesService,ManagerActivateRoutesService]
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [ActivateRoutesService, ManagerActivateRoutesService,]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [LoginActivateService]
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
+    canActivate: [ActivateRoutesService, EmplyeeActivateRoutesService]
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+    canActivate: [ActivateRoutesService, EmplyeeActivateRoutesService]
+  },
+  {
+    path: 'dashboard-products',
+    component: ProductsDashboardComponent,
+    canActivate: [ActivateRoutesService, ManagerActivateRoutesService]
 
-},
-{path:'dashboard-orders',
-  component:OrdersDashboardComponent,
-  canActivate:[ActivateRoutesService,ManagerActivateRoutesService]
+  },
+  {
+    path: 'dashboard-orders',
+    component: OrdersDashboardComponent,
+    canActivate: [ActivateRoutesService, ManagerActivateRoutesService]
 
-},
-{path:'manage-order',
-  component:ManageOrderComponent,
-  canActivate:[ActivateRoutesService,EmplyeeActivateRoutesService]
-},
-{path:'warehouses',
-  component:WarehouseComponent,
-  canActivate:[ActivateRoutesService,ManagerActivateRoutesService]
-}
+  },
+  {
+    path: 'manage-order',
+    component: ManageOrderComponent,
+    canActivate: [ActivateRoutesService, EmplyeeActivateRoutesService]
+  },
+  {
+    path: 'warehouses',
+    component: WarehouseComponent,
+    canActivate: [ActivateRoutesService, ManagerActivateRoutesService]
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

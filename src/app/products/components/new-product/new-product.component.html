@@ -46,11 +46,13 @@
                         <div *ngIf="productForm.get('stockLevel')?.touched && productForm.get('stockLevel')?.invalid" class="text-danger">
                             <small *ngIf="productForm.get('stockLevel')?.hasError('required')">Stock level is required</small>
                         </div>
+                        <small class="text-danger" *ngIf="productForm.get('stockLevel')?.value > (storeCapacity!-totalStock)">Warehouse available Capacity is {{storeCapacity!-totalStock}}.</small>
                     </div>
 
+                    
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid" (click)="submit()">Save Product</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid  ||(productForm.get('stockLevel')?.value > (storeCapacity!-totalStock))" (click)="submit()">Save Product</button>
                     <div *ngIf="productAlreadyExist" class="alert alert-danger" role="alert">
                         Product already exists.
                     </div>

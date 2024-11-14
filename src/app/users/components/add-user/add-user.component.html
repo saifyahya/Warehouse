@@ -21,6 +21,10 @@
                             <small *ngIf="signupForm.get('username')?.hasError('minlength')">Username must be at least 3
                                 characters long</small>
                         </div>
+                        <div *ngIf="usernameAlreadyTaken"
+                        class="text-danger">
+                        <small>Username alreday taken.</small>
+                    </div>
                     </div>
 
                     <!-- Name Field -->
@@ -59,6 +63,21 @@
                         </div>
                     </div>
 
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" formControlName="phoneNumber"
+                            placeholder="Enter Phone" />
+                        <div *ngIf="signupForm.get('phoneNumber')?.touched && signupForm.get('phoneNumber')?.invalid"
+                            class="text-danger">
+                            <small *ngIf="signupForm.get('phoneNumber')?.hasError('required')">Phone Number is required</small>
+                            <small *ngIf="signupForm.get('phoneNumber')?.hasError('minlength') ||signupForm.get('phoneNumber')?.hasError('maxlength')">Please enter a valid Phone
+                                Number (Max 10 digits)</small>
+                                <br>
+                                <small *ngIf="signupForm.get('phoneNumber')?.hasError('pattern') ">Please enter a valid Phone
+                                    Number</small>
+                        </div>
+                    </div>
+
                     <!-- Password Field -->
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label for="password">Password</label>
@@ -84,17 +103,24 @@
                             <small *ngIf="signupForm.get('role')?.hasError('required')">Role is required</small>
                         </div>
                     </div>
-                    <div class="form-group" *ngIf="signupForm.controls['role'].value==='Employee'" style="margin-bottom: 10px;">
+                    <div class="form-group" *ngIf="signupForm.controls['role'].value==='Employee' && newStores.length>0" style="margin-bottom: 10px;">
                         <label for="store">Store Id</label>
-                        <input class="form-control" id="store" formControlName="store" type="number">
-
+                        <select class="form-control" id="store" formControlName="store">
+                            <option *ngFor="let warehouse of newStores" [value]="warehouse.id">
+                              {{ warehouse.id }}
+                            </option>
+                          </select>
                         <div *ngIf="signupForm.get('store')?.touched && signupForm.get('store')?.invalid"
                             class="text-danger">
                             <small *ngIf="signupForm.get('store')?.hasError('required')">store is required</small>
                         </div>
                     </div>
+                    <div class="text-danger" *ngIf="newStores.length===0 && signupForm.controls['role'].value==='Employee'">
+                        <small >No Available Stores.</small>
 
-                    <button type="submit" class="btn btn-primary" (click)="addNewUser()" data-bs-dismiss="modal">Sign
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" (click)="addNewUser()"  [disabled]="signupForm.invalid ||(newStores.length===0 && signupForm.controls['role'].value==='Employee')">Sign
                         Up</button>
               
                 </form>

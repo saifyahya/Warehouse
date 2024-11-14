@@ -12,6 +12,11 @@ import { AutheticationService } from '../../../login/service/authetication.servi
 export class EditProductComponent {
 productAlreadyExist: boolean=false;
 @Input()
+storeCapacity:number|undefined=0
+
+@Input()
+totalStock:number=0;
+@Input()
 productToEdit!:Product;
 @ViewChild('closeButton')closeButton!:ElementRef<HTMLButtonElement>;
 constructor(private productService:ProductsService,private authService:AutheticationService){

@@ -1,0 +1,22 @@
+.table {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.table td, .table th {
+    padding: 10px;
+    width: max-content;
+}
+
+.table .btn {
+    margin-right: 5px;
+}
+
+button.btn-primary {
+    padding: 8px 15px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}

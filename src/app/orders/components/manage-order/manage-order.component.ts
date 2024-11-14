@@ -4,6 +4,7 @@ import { AutheticationService } from '../../../login/service/authetication.servi
 import { Product } from '../../../products/model/product.model';
 import { Order } from '../../models/order.model';
 import { OrdersService } from '../../service/orders.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-order',
@@ -20,7 +21,8 @@ export class ManageOrderComponent {
   paymentMethod: any;
   customerDetails:any;
   selectedProductsArray: Product[] = [];
-  constructor(private productService: ProductsService, private authService: AutheticationService,private orderService:OrdersService) { }
+  constructor(private productService: ProductsService, private authService: AutheticationService,
+    private orderService:OrdersService, private router:Router) { }
   ngOnInit() {
     this.getUserProducts();
     this.subscribeToProductsService();
@@ -94,7 +96,7 @@ export class ManageOrderComponent {
     
     this.orderService.createStoreOrder(newOrder).subscribe({
       next:(data)=>{
-        console.log(data); 
+        this.router.navigateByUrl('/orders')
       }
     })
   }

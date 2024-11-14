@@ -19,8 +19,17 @@ export class WarehouseService {
     }));
   }
 
+  getNewWarehoues():Observable<Warehouse[]>{
+    return this.httpClient.get<Warehouse[]>(`${this.baseURL}/empty`);
+  }
+
   createNewWarehouse(warehouse:Warehouse):Observable<{message:string,status:string}>{
     return this.httpClient.post<{message:string,status:string}>(`${this.baseURL}`,warehouse);
+   }
+
+   getEmployeeWraehouse(warehouseId:number) {
+    return this.httpClient.get<Warehouse>(`${this.baseURL}/${warehouseId}`);
+
    }
 
 }
